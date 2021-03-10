@@ -16,18 +16,18 @@ public class StudentRepository {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public Student create(Student std) {
+    public Student create(Student student) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("first_name", std.getFirstName());
-        mapSqlParameterSource.addValue("last_name", std.getLastName());
-        mapSqlParameterSource.addValue("email", std.getEmail());
-        mapSqlParameterSource.addValue("age", std.getAge());
+        mapSqlParameterSource.addValue("first_name", student.getFirstName());
+        mapSqlParameterSource.addValue("last_name", student.getLastName());
+        mapSqlParameterSource.addValue("email", student.getEmail());
+        mapSqlParameterSource.addValue("age", student.getAge());
 
         namedParameterJdbcTemplate.update(
                 "insert into students (first_name, last_name, email, age) values (:first_name, :last_name, :email, :age)",
                 mapSqlParameterSource
         );
-        return std;
+        return student;
     }
 
     public List<Student> getAllStudents() {
