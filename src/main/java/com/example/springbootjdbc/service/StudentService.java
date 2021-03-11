@@ -28,6 +28,6 @@ public class StudentService {
     }
 
     public Student getStudentById(long id) {
-        return studentRepository.findById(id).orElseThrow(() -> new StudentException("Not Found Student ID: " + id));
+        return studentRepository.findById(id).orElseThrow(() -> new StudentException("Not Found Student ID: " + id, 404));
     }
 }
