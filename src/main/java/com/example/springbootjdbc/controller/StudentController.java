@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("api/students")
+@RestController
+@RequestMapping("api/students")
 public class StudentController {
 
     @Autowired
@@ -16,11 +17,7 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<?> createStudent(@RequestBody Student student) {
         Student std = studentService.createStudent(student);
-        if (std == null) {
-            return new ResponseEntity<>("Something Went Wrong", HttpStatus.BAD_REQUEST);
-        } else {
-            return new ResponseEntity<>(std, HttpStatus.CREATED);
-        }
+        return new ResponseEntity<>(std, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -29,11 +26,9 @@ public class StudentController {
     }
 
     //    @RequestMapping(value = "/search/{id}", method = RequestMethod.GET)
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable long id) {
-//        if(std == null) {
-//            return new ResponseEntity<>()
-//        }
-        return null;
+        Student std = studentService.getStudentById(id);
+        return new ResponseEntity<>(std, HttpStatus.OK);
     }
 }
