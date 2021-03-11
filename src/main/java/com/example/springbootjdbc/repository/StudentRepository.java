@@ -62,4 +62,23 @@ public class StudentRepository {
 
         return studentList.stream().findFirst();
     }
+
+    public void update(Student student) {
+        namedParameterJdbcTemplate.update(
+                "update students set age = :age where id = :id",
+                new MapSqlParameterSource()
+                        .addValue("id", student.getId())
+                        .addValue("age", student.getAge())
+        );
+    }
+
+    public void delete(long id) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("id", id);
+
+        namedParameterJdbcTemplate.update(
+                "delete from students where id = :id",
+                mapSqlParameterSource
+        );
+    }
 }

@@ -30,4 +30,17 @@ public class StudentService {
     public Student getStudentById(long id) {
         return studentRepository.findById(id).orElseThrow(() -> new StudentException("Not Found Student ID: " + id, 404));
     }
+
+    public void updateAge(Student student) {
+        long id = student.getId();
+        if (this.getStudentById(id) != null) {
+            studentRepository.update(student);
+        }
+    }
+
+    public void deleteStudentById(long id) {
+        if (this.getStudentById(id) != null) {
+            studentRepository.delete(id);
+        }
+    }
 }

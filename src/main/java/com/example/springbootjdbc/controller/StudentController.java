@@ -25,10 +25,21 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
     }
 
-    //    @RequestMapping(value = "/search/{id}", method = RequestMethod.GET)
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable long id) {
         Student std = studentService.getStudentById(id);
         return new ResponseEntity<>(std, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateAge(@RequestBody Student student) {
+        studentService.updateAge(student);
+        return new ResponseEntity<>("Update Age for Student ID: " + student.getId(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteStudentById(@PathVariable long id) {
+        studentService.deleteStudentById(id);
+        return new ResponseEntity<>("Delete Student ID: " + id, HttpStatus.OK);
     }
 }
