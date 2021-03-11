@@ -1,12 +1,10 @@
 package com.example.springbootjdbc.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Accessors(chain = true)
 public class Student {
     private long id;
     private String firstName;
@@ -14,10 +12,4 @@ public class Student {
     private String email;
     private int age;
 
-    public Student(String firstName, String lastName, String email, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-    }
 }
