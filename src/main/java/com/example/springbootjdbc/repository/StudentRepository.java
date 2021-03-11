@@ -43,6 +43,7 @@ public class StudentRepository {
 
         List<Student> studentList = namedParameterJdbcTemplate.query(
                 "select * from students where id = :id",
+                mapSqlParameterSource,
                 new BeanPropertyRowMapper<>(Student.class)
         );
 
@@ -55,6 +56,7 @@ public class StudentRepository {
 
         List<Student> studentList = namedParameterJdbcTemplate.query(
                 "select * from students where email = :email",
+                mapSqlParameterSource,
                 new BeanPropertyRowMapper<>(Student.class)
         );
 
