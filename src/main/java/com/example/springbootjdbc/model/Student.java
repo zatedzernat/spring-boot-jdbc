@@ -10,6 +10,9 @@ public class Student {
     private String email;
     private int age;
 
+    public Student() {
+    }
+
     public Student(long id, String firstName, String lastName, String email, int age) {
         this.id = id;
         this.firstName = firstName;
