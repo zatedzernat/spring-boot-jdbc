@@ -11,13 +11,13 @@ public class StudentExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseEntity<?> handleException(Exception ex) {
+    public ResponseEntity<String> handleException(Exception ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(StudentException.class)
     @ResponseBody
-    public ResponseEntity<?> handleStudentException(StudentException ex) {
+    public ResponseEntity<String> handleStudentException(StudentException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.valueOf(ex.getCode()));
     }
 }

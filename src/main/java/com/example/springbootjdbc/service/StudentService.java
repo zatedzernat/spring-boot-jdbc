@@ -34,13 +34,19 @@ public class StudentService {
     public void updateAge(Student student) {
         long id = student.getId();
         if (this.getStudentById(id) != null) {
-            studentRepository.update(student);
+            int update = studentRepository.update(student);
+            if (update == 0) {
+                throw new StudentException("Something Went Wrong (Update)", 500);
+            }
         }
     }
 
     public void deleteStudentById(long id) {
         if (this.getStudentById(id) != null) {
-            studentRepository.delete(id);
+            int delete = studentRepository.delete(id);
+            if (delete == 0) {
+                throw new StudentException("Something Went Wrong (Delete)", 500);
+            }
         }
     }
 }

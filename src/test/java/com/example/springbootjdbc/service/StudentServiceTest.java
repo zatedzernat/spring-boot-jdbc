@@ -3,6 +3,8 @@ package com.example.springbootjdbc.service;
 import com.example.springbootjdbc.exception.StudentException;
 import com.example.springbootjdbc.model.Student;
 import com.example.springbootjdbc.repository.StudentRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,12 +30,15 @@ class StudentServiceTest {
 
     private List<Student> studentList;
 
+    private ObjectMapper objectMapper;
+
     @BeforeEach
     void setUp() {
         student = new Student().setId(1).setFirstName("aaa").setLastName("test").setEmail("aaa@gmail.com").setAge(10);
         studentList = List.of(
                 student,
                 new Student().setId(2).setFirstName("bbb").setLastName("test").setEmail("bbb@gmail.com").setAge(10));
+        objectMapper = new ObjectMapper();
     }
 
     @Test
@@ -58,20 +63,20 @@ class StudentServiceTest {
     }
 
     @Test
-    void getAllStudents() {
+    void getAllStudents() throws JsonProcessingException {
         Mockito.when(studentRepository.getAllStudents()).thenReturn(studentList);
         List<Student> result = studentService.getAllStudents();
 
-        assertEquals(studentList, result);
+        assertEquals(objectMapper.writeValueAsString(studentList), objectMapper.writeValueAsString(result));
     }
 
     @Test
-    void getStudentById() {
+    void getStudentById() throws JsonProcessingException {
         Mockito.when(studentRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(student));
         long id = 1L;
         Student result = studentService.getStudentById(id);
 
-        assertEquals(student, result);
+        assertEquals(objectMapper.writeValueAsString(student), objectMapper.writeValueAsString(result));
     }
 
     @Test

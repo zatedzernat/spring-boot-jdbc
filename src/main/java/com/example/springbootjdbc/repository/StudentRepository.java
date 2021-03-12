@@ -1,5 +1,6 @@
 package com.example.springbootjdbc.repository;
 
+import com.example.springbootjdbc.mapper.StudentRowMapper;
 import com.example.springbootjdbc.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -33,7 +34,7 @@ public class StudentRepository {
     public List<Student> getAllStudents() {
         return namedParameterJdbcTemplate.query(
                 "select * from students",
-                new BeanPropertyRowMapper<>(Student.class)
+                new StudentRowMapper()
         );
     }
 
@@ -63,8 +64,8 @@ public class StudentRepository {
         return studentList.stream().findFirst();
     }
 
-    public void update(Student student) {
-        namedParameterJdbcTemplate.update(
+    public int update(Student student) {
+        return namedParameterJdbcTemplate.update(
                 "update students set age = :age where id = :id",
                 new MapSqlParameterSource()
                         .addValue("id", student.getId())
@@ -72,11 +73,11 @@ public class StudentRepository {
         );
     }
 
-    public void delete(long id) {
+    public int delete(long id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", id);
 
-        namedParameterJdbcTemplate.update(
+        return namedParameterJdbcTemplate.update(
                 "delete from students where id = :id",
                 mapSqlParameterSource
         );

@@ -70,7 +70,7 @@ class StudentControllerTest {
         Mockito.when(studentService.getAllStudents()).thenReturn(studentList);
 
         mockMvc.perform(get("/api/students"))
-                .andExpect(jsonPath("$[0].firstName").value("aaa"))
+                .andExpect(jsonPath("studentList[0].firstName").value("aaa"))
                 .andExpect(status().isOk());
     }
 
@@ -88,7 +88,7 @@ class StudentControllerTest {
         Mockito.when(studentService.getStudentById(Mockito.anyLong())).thenReturn(student);
         long id = 1L;
         mockMvc.perform(get("/api/students/" + id))
-                .andExpect(jsonPath("$.firstName").value("aaa"))
+                .andExpect(jsonPath("student.firstName").value("aaa"))
                 .andExpect(status().isOk());
     }
 }
