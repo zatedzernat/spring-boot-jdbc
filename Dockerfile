@@ -11,3 +11,5 @@ ADD target/*.jar app.jar
 
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+
+# https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/
