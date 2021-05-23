@@ -1,0 +1,23 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: "3.1"
+# Define services
+services:
+  # My Backend APP
+  spring-boot-jdbc:
+    container_name: spring-boot-jdbc
+    image: spring-boot-jdbc:1.0
+    build: .
+    ports:
+      - 1150:1150
+    depends_on:
+      - postgres-db
+  # Postgres DB
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:11
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
