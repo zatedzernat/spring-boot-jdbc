@@ -4,6 +4,7 @@ version: "3.1"
 services:
   # My Backend APP
   spring-boot-jdbc:
+    image: 'zatedzernat/spring-boot-jdbc:latest'
     container_name: spring-boot-jdbc
     build: .
     ports:
