@@ -5,10 +5,13 @@ services:
   # My Backend APP
   spring-boot-jdbc:
     container_name: spring-boot-jdbc
-    image: spring-boot-jdbc:1.0
     build: .
     ports:
       - 1150:1150
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - postgres-db
   # Postgres DB
