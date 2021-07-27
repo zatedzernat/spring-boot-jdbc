@@ -2,6 +2,16 @@
 version: "3.1"
 # Define services
 services:
+  # Postgres DB
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:11
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
   # My Backend APP
   spring-boot-jdbc:
     image: 'zatedzernat/spring-boot-jdbc:latest'
@@ -15,13 +25,3 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - postgres-db
-  # Postgres DB
-  postgres-db:
-    container_name: postgres-db
-    image: postgres:11
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password

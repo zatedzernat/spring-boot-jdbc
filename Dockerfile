@@ -22,3 +22,4 @@ ENTRYPOINT ["java","-jar","/tmp/spring-boot-jdbc.jar"]
 
 # Ref1: https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/
 # Ref2: https://stackoverflow.com/questions/27767264/how-to-dockerize-maven-project-and-how-many-ways-to-accomplish-it
+# Ref3: https://www.split.io/blog/containerization-spring-boot-docker/
