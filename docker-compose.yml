@@ -14,8 +14,8 @@ services:
       - POSTGRES_PASSWORD=password
   # My Backend APP
   spring-boot-jdbc:
-    image: 'zatedzernat/spring-boot-jdbc:latest'
     container_name: spring-boot-jdbc
+    image: 'zatedzernat/spring-boot-jdbc:latest'
     build: .
     ports:
       - 1150:1150
