@@ -9,7 +9,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=springbootjdbc
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
   # My Backend APP
@@ -20,7 +20,7 @@ services:
     ports:
       - 1150:1150
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db/springbootjdbc
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
